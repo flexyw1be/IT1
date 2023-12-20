@@ -1,0 +1,42 @@
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int main() {
+    int n, k, x, cnt = 0, temp;
+    cout << "Введите n:"<<endl;
+    cin >> n;
+    cout<<"Введите k:"<<endl;
+    cin>> k;
+    int*a = new int[n]; // задаем и считываем массив
+    cout<<"Введите "<<n<<" чисел:"<<endl;
+    for(int i = 0; i < n; i++){
+        cin >> x;
+        a[i] = x;
+        if(x % 2 == 0){cnt += 1;} //если встретилось четное число, увеличиваем счетчик
+    }
+    
+    int *p = new int[cnt]; //задаем массив с целыми числами
+    int j = 0;
+    for(int i = 0; i < n; i++){
+        if(a[i] % 2 == 0){p[j] = i; j += 1;}
+    }
+    int *dp = new int[cnt]; //создаем развернутый массив p
+    
+    for(int i =0; i < cnt; i++){
+        dp[i] = p[cnt -i - 1];
+    }
+
+    for(int i = 0; i < cnt/ 2; i++){ //меняем четные числа местами
+        temp = a[p[i]];
+        a[p[i]] = a[dp[i]];
+        a[dp[i]] = temp;
+    }
+    cout<<"Ответ: ";
+    for(int i = 0; i < n; i++){ //выводим ответ
+        cout << a[i] << " ";
+    }
+    
+    return 0;
+}

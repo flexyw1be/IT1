@@ -1,0 +1,24 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int a, b;
+    cout << "Введите два числа:"<<endl;
+    cin >> a >> b;
+    int* pa = &a, * pb = &b;
+    
+    int temp = *pa;
+    *pa = *pb;
+    *pb = temp;
+    
+    if (*pa >= *pb) {
+        *pb *= 2;
+    }
+    else{
+        *pa *= 2;
+    }
+
+    cout << "a = " << a <<endl<< "b = " << b<<endl;
+    return 0;
+}

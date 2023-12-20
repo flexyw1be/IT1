@@ -1,0 +1,36 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int n,m, cnt = 0;
+    cout << "Введите n:"<<endl;
+    cin >> n;
+    cout<<"Введите m:"<<endl;
+    cin>> m;
+    
+    int**a = new int*[n];
+    for(int i = 0; i < n; i++){a[i] = new int[m];}
+    
+    for(int i = 0; i < n; i++){
+        if (i % 2 == 0){
+            for(int j = 0; j < m; j++){a[i][j] = i * m + j; cnt++;} // если строка четная, то идем в порядке возратания
+        }
+        else{
+            for(int j = m - 1; j > -1; j--){a[i][j] = cnt; cnt++;} // если строка нечетная, то идем в порядке убывания
+        }
+    }
+    // формируем ответ
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < m; j++){
+            if(a[i][j] / 10 == 0){
+                cout<<"  "<<a[i][j];
+            }
+            else{
+                cout<<" "<<a[i][j];
+            }
+        }
+        cout<<endl;
+    }
+    return 0;
+}
